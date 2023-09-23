@@ -6,22 +6,37 @@ function photographerTemplate(data) {
   function getUserCardDOM() {
     const article = document.createElement('article');
     const img = document.createElement('img');
-    const h2 = document.createElement('h2');
-    const h3 = document.createElement('h3');
-    const p = document.createElement('p');
-    const p2 = document.createElement('p');
+    const photographer = document.createElement('div');
+    photographer.className = 'photographerIdentity';
+    const photographerName = document.createElement('h3');
+    const photographerCity = document.createElement('p');
+    photographerCity.className = 'photographerCity';
+    const photographerDescription = document.createElement('p');
+    photographerDescription.className = 'photographerDescription';
+    const photographerPrice = document.createElement('p');
+    photographerPrice.className = 'photographerPrice';
 
+    article.setAttribute(
+      'aria-label',
+      `Carte de présentation du photographe ${name}`
+    );
     img.setAttribute('src', picture);
-    h2.textContent = name;
-    h3.textContent = `${city}, ${country}`;
-    p.textContent = tagline;
-    p2.textContent = `${price}Є/jour`;
+    img.setAttribute('alt', `Photo de profile de ${name}`);
+    photographer.setAttribute(
+      'aria-label',
+      `Déscription du photographe ${name}`
+    );
+    photographerName.textContent = name;
+    photographerCity.textContent = `${city}, ${country}`;
+    photographerDescription.textContent = tagline;
+    photographerPrice.textContent = `${price}Є/jour`;
 
     article.appendChild(img);
-    article.appendChild(h2);
-    article.appendChild(h3);
-    article.appendChild(p);
-    article.appendChild(p2);
+    article.appendChild(photographer);
+    photographer.appendChild(photographerName);
+    photographer.appendChild(photographerCity);
+    photographer.appendChild(photographerDescription);
+    photographer.appendChild(photographerPrice);
 
     return article;
   }
