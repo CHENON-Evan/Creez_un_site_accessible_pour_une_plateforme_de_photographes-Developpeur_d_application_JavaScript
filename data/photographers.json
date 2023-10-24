@@ -386,7 +386,7 @@
 			"id": 5234343,
 			"photographerId": 243,
 			"title": "Wild horses in the mountains",
-			"video": "Animals_Wild_Horses_in_the_mountains.mp4",
+			"video": "Animals_Wild_Horses_mountains.mp4",
 			"likes": 142,
 			"date": "2019-08-23",
 			"price": 60
@@ -477,7 +477,7 @@
 			"id": 9259398453,
 			"photographerId": 195,
 			"title": "Drone shot of Buenos Aires highways",
-			"video": "Architecture_coverr_circle_empty_highway_in_buenos_aires_587740985637.mp4",
+			"video": "Architecture_coverr_circle.mp4",
 			"likes": 57,
 			"date": "2020-01-20",
 			"price": 65
@@ -585,7 +585,7 @@
 			"id": 777723343,
 			"photographerId": 930,
 			"title": "Connected Curves",
-			"image": "Architecture_Connected_Curves.jpg",
+			"image": "Architecture_Curves.jpg",
 			"likes": 79,
 			"date": "2018-05-21",
 			"price": 80

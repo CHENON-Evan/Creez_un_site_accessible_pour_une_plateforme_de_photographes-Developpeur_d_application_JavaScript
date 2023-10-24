@@ -31,45 +31,52 @@ h1 {
   margin-top: 100px;
 }
 
-.photographer_section article,
-.photographer_section article .photographerIdentity {
-  justify-self: center;
+.photographer_section article a,
+.photographer_section article a .photographer_identity {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
-.photographer_section article img {
+.photographer_section article a {
+  text-decoration: none;
+  color: black;
+}
+
+.photographer_section article a img {
   height: 200px;
   width: 200px;
   border-radius: 50%;
   object-fit: cover;
 }
 
-.photographer_section article .photographerIdentity h3,
-.photographer_section article .photographerIdentity p {
+.photographer_section article a .photographer_identity .photographer_name,
+.photographer_section article a .photographer_identity p {
   margin: 0;
 }
 
-.photographer_section article .photographerIdentity h3 {
+.photographer_name {
   color: #d3573c;
+  font-size: 36px;
 }
 
-.photographer_section article .photographerIdentity .photographerCity {
+.photographer_city,
+.photographer_title_likes,
+.lightbox_title {
   color: #901c1c;
   font-size: 13px;
 }
 
-.photographer_section article .photographerIdentity .photographerDescription {
+.photographer_section
+  article
+  a
+  .photographer_identity
+  .photographer_description {
   font-size: 10px;
 }
 
-.photographer_section article .photographerIdentity h3 {
-  font-size: 36px;
-}
-
-.photographer_section article .photographerIdentity .photographerPrice {
+.photographer_section article a .photographer_identity .photographer_price {
   color: #757575;
   font-size: 9px;
 }

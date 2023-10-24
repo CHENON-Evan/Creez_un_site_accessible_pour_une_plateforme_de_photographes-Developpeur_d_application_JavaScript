@@ -1,76 +1,365 @@
 #contact_modal {
-    display: none;
+  display: none;
 }
 
-.photograph-header {
-    background-color: #FAFAFA;
-    height: 300px;
-    margin: 0 100px;
+#contact_lightbox {
+  display: none;
 }
 
-.contact_button {
-    font-size: 20px;
-    font-weight: bold;
-    color: white;
-    padding: 11px;
-    width: 170px;
-    height: 70px;
-    border: none;
-    background-color: #901C1C;
-    border-radius: 5px;
-    cursor: pointer;
+.photographer_header {
+  background-color: #f2f2f2;
+  height: 300px;
+  margin: 40px 100px 0 100px;
+}
+
+.photographer_header article {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 50px;
+  min-height: 300px;
+}
+
+.photographer_header article img {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.photographer_header article .photographer_name,
+.photographer_header article p {
+  margin: 0;
+}
+
+.photographer_header article .photographer_info .photographer_name {
+  font-size: 64px;
+  font-weight: normal;
+}
+
+.photographer_header article .photographer_info .photographer_city {
+  font-size: 24px;
+}
+
+.photographer_header article .photographer_info .photographer_description {
+  font-size: 18px;
+}
+
+.photographer_header .filter_media {
+  display: flex;
+  margin-top: 20px;
+}
+
+.photographer_header .filter_media .filter_text {
+  font-size: 20px;
+  font-weight: bold;
+  padding-right: 25px;
+}
+
+.photographer_header .filter_media .dropdown {
+  z-index: 1;
+}
+
+.photographer_header .filter_media .dropdown_button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#dropdown_content {
+  display: none;
+}
+
+.photographer_header .filter_media .dropdown_button::after {
+  border-radius: 5px 5px 0 0;
+}
+
+.photographer_header .filter_media .dropdown_button .filter_image::after {
+  transform: rotate(180deg);
+}
+
+.photographer_header .filter_media .dropdown ul {
+  list-style: none;
+  background-color: #901c1c;
+  max-height: 0;
+  padding: 0;
+  margin: 0;
+  border-radius: 0 0 5px 5px;
+}
+
+.photographer_header .filter_media .dropdown li::after {
+  content: '';
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  height: 1px;
+  background-color: var(--color-light);
+}
+
+.photographer_header .filter_media .dropdown ul li button {
+  width: 100%;
+  font-size: 20px;
+  color: white;
+
+  text-align: left;
+  border: none;
+}
+
+.photographer_content {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr;
+  margin: 125px 100px 0 100px;
+}
+.photographer_content article {
+  margin-bottom: 20px;
+  width: 350px;
+  height: 350px;
+}
+
+.photographer_content article img,
+.photographer_content article video {
+  object-fit: cover;
+  border-radius: 5px;
+  width: 350px;
+  height: 300px;
+}
+
+.photographer_content article .photographer_title_likes {
+  display: flex;
+  justify-content: space-between;
+}
+
+.photographer_content article .photographer_title,
+.lightbox .lightbox_title {
+  font-size: 24px;
+  margin-block: 10px;
+}
+
+.photographer_content article .photographer_likes {
+  display: flex;
+  align-items: center;
+}
+
+.photographer_content article .photographer_likes p {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.photographer_content article .photographer_likes img {
+  width: 20px;
+  height: 20px;
+}
+
+.contact_button,
+.button_submit,
+.dropdown_button,
+button {
+  font-size: 20px;
+  color: white;
+  padding: 11px;
+  width: 170px;
+  height: 70px;
+  border: none;
+  background-color: #901c1c;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#contact_modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(196, 196, 196, 0.4);
+  z-index: 1;
 }
 
 .modal {
-    border-radius: 5px;
-    background-color: #DB8876;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 35px;
-    margin: auto;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #db8876;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 669px;
+  padding: 35px;
+  margin: auto;
 }
 
 .modal header {
-    justify-content: space-between;
-    width: 100%;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
 }
 
 .modal header img {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .modal header h2 {
-    font-size: 64px;
-    font-weight: normal;
-    text-align: center;
+  margin: 0px;
+  font-size: 64px;
+  font-weight: normal;
+  text-align: center;
+}
+
+.modal header .photographer_name {
+  margin: 0px;
+  width: 100%;
+  color: black;
+  font-size: 64px;
+  padding-bottom: 19px;
 }
 
 form {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 form label {
-    color: #312E2E;
-    font-size: 36px;
+  color: #312e2e;
+  font-size: 36px;
 }
 
 form div {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: self-start;
-    margin-bottom: 26px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
-form input {
-    width: 100%;
-    height: 68px;
-    border: none;
-    border-radius: 5px;
+form .form_data input {
+  width: 100%;
+  height: 68px;
+  border: none;
+  border-radius: 5px;
+}
+
+form .form_data textarea {
+  width: 100%;
+  height: 166px;
+  border: none;
+  border-radius: 5px;
+  resize: inherit;
+  margin-bottom: 26px;
+}
+
+.form_data[data-error]::after {
+  content: attr(data-error);
+  font-size: 22px;
+  color: #901c1c;
+  display: block;
+  margin-top: 15px;
+  line-height: 0.3;
+  opacity: 0;
+  transition: 0.3s;
+}
+.form_data[data-error-visible='true']::after {
+  opacity: 1;
+}
+
+.likes_price_card {
+  display: flex;
+  justify-content: space-between;
+  position: sticky;
+  bottom: 0;
+  left: 100%;
+  margin-right: 36px;
+  border-radius: 5px 5px 0 0;
+  background: #db8876;
+  width: 376px;
+  height: 89px;
+  flex-shrink: 0;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.likes_content {
+  margin-left: 30px;
+}
+
+.photographer_price {
+  margin-right: 30px;
+}
+
+#contact_lightbox {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(196, 196, 196, 0.4);
+  z-index: 1;
+}
+
+.lightbox {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px 60px 0 60px;
+  margin: auto;
+}
+
+.lightbox #media_container {
+  width: 100%;
+  height: 100%;
+}
+
+.lightbox #media_container img {
+  cursor: pointer;
+  object-fit: cover;
+  width: 1050px;
+  height: 900px;
+  border-radius: 5px;
+}
+
+.lightbox #media_container video {
+  cursor: pointer;
+  object-fit: cover;
+  width: 1050px;
+  height: 900px;
+  border-radius: 5px;
+}
+
+.lightbox .close_lightbox,
+.lightbox .previous_lightbox,
+.lightbox .next_lightbox {
+  position: absolute;
+  cursor: pointer;
+  width: 72px;
+}
+
+.lightbox .close_lightbox {
+  top: 0;
+  right: 0;
+}
+
+.lightbox .previous_lightbox {
+  top: 50%;
+  left: 0;
+}
+
+.lightbox .next_lightbox {
+  top: 50%;
+  right: 0;
+}
+
+.lightbox .lightbox_title {
+  width: 100%;
 }
