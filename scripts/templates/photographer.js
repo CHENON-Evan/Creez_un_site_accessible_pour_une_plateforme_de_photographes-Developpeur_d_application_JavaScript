@@ -49,6 +49,10 @@ function photographerTemplate(data) {
     return article;
   }
 
+  function getPhotographerPrice() {
+    return price;
+  }
+
   function getUserBendeauDOM() {
     const article = document.createElement('article');
     const photographerInfo = document.createElement('div');
@@ -85,5 +89,5 @@ function photographerTemplate(data) {
     return article;
   }
 
-  return { getUserCardDOM, getUserBendeauDOM };
+  return { getUserCardDOM, getUserBendeauDOM, getPhotographerPrice };
 }

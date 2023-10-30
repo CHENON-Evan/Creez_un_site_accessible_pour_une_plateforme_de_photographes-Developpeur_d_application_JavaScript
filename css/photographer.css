@@ -21,9 +21,10 @@
 }
 
 .photographer_header article img {
+  overflow: unset;
   height: 200px;
   width: 200px;
-  border-radius: 50%;
+  clip-path: ellipse(50% 50%);
   object-fit: cover;
 }
 
@@ -113,7 +114,7 @@
   margin: 125px 100px 0 100px;
 }
 .photographer_content article {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   width: 350px;
   height: 350px;
 }
@@ -148,6 +149,7 @@
 }
 
 .photographer_content article .photographer_likes img {
+  cursor: pointer;
   width: 20px;
   height: 20px;
 }
@@ -269,9 +271,9 @@ form .form_data textarea {
 .likes_price_card {
   display: flex;
   justify-content: space-between;
-  position: sticky;
+  position: fixed;
   bottom: 0;
-  left: 100%;
+  right: 100px;
   margin-right: 36px;
   border-radius: 5px 5px 0 0;
   background: #db8876;
@@ -284,6 +286,7 @@ form .form_data textarea {
 }
 
 .likes_content {
+  display: flex;
   margin-left: 30px;
 }
 
@@ -312,7 +315,7 @@ form .form_data textarea {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 60px 60px 0 60px;
+  padding: 22px 60px 0 60px;
   margin: auto;
 }
 

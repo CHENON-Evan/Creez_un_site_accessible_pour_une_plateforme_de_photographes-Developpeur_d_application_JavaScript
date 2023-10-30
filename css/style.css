@@ -45,9 +45,10 @@ h1 {
 }
 
 .photographer_section article a img {
+  overflow: unset;
   height: 200px;
   width: 200px;
-  border-radius: 50%;
+  clip-path: ellipse(50% 50%);
   object-fit: cover;
 }
 

@@ -18,6 +18,8 @@ async function displayData(photographers, media) {
   const userBendeauDOM = photographerModel.getUserBendeauDOM();
   photographerHeader.appendChild(userBendeauDOM);
 
+  const photographerPrice = photographerModel.getPhotographerPrice();
+
   const filterMedia = mediaTemplate(photographer);
   const filterMediaCardDOM = filterMedia.getFilterMediaCardDOM();
   photographerHeader.appendChild(filterMediaCardDOM);
@@ -27,15 +29,19 @@ async function displayData(photographers, media) {
   const userContactDOM = photographerModal.getContactCardDOM();
   photographerMain.appendChild(userContactDOM);
 
-  const photographerLikesPrice = mediaTemplate(photographer);
-  const likesPriceCardDOM = photographerLikesPrice.getLikesPriceCardDOM();
-  photographerMain.appendChild(likesPriceCardDOM);
-
   const photographerMedia = media.filter((data) => data.photographerId == id);
 
   tablePhoto = photographerMedia;
   idPhotographe = id;
-  displayMedia();
+  displayMedia(photographerPrice);
+
+  const photographerLikesPrice = mediaTemplate(photographer);
+  const likesPriceCardDOM = photographerLikesPrice.getLikesPriceCardDOM(
+    tablePhoto,
+    photographerPrice
+  );
+  const likesTotal = document.getElementById('likesTotal');
+  likesTotal.appendChild(likesPriceCardDOM);
 
   const lightboxModel = lightboxTemplate(tablePhoto);
   const lightboxCardDOM = lightboxModel.getLightboxMediaCardDOM();
@@ -44,11 +50,11 @@ async function displayData(photographers, media) {
   return { photographer, photographerMedia };
 }
 
-function displayMedia() {
+function displayMedia(photographerPrice) {
   const mediasSection = document.querySelector('.photographer_content');
   mediasSection.innerHTML = '';
   tablePhoto.forEach((media) => {
-    const mediaModel = mediaTemplate(media);
+    const mediaModel = mediaTemplate(media, photographerPrice);
     const mediaContent = mediaModel.getMediaCardDOM(tablePhoto);
     mediasSection.appendChild(mediaContent);
   });

@@ -1,6 +1,5 @@
-function mediaTemplate(data) {
-  const { id, photographerId, title, image, video, likes, date, price, name } =
-    data;
+function mediaTemplate(data, photographerPrice) {
+  const { id, photographerId, title, image, video, likes, price } = data;
 
   const photographerPicture = `assets/images/${photographerId}/${image}`;
   const photographerVideo = `assets/images/${photographerId}/${video}`;
@@ -39,23 +38,33 @@ function mediaTemplate(data) {
     dropdownPopulaireButton.textContent = 'Popularité';
     dropdownDateButton.textContent = 'Date';
     dropdownTitleButton.textContent = 'Titre';
+    dropdownPopulaireButton.style.display = 'none';
     dropdownPopulaireButton.addEventListener('click', (e) => {
       filterContent.textContent = 'Popularité';
       tablePhoto.sort((a, b) => b.likes - a.likes);
       displayMedia();
       closeDropdown();
+      dropdownPopulaireButton.style.display = 'none';
+      dropdownDateButton.style.display = 'block';
+      dropdownTitleButton.style.display = 'block';
     });
     dropdownDateButton.addEventListener('click', (e) => {
       filterContent.textContent = 'Date';
       tablePhoto.sort((a, b) => new Date(b.date) - new Date(a.date));
       displayMedia();
       closeDropdown();
+      dropdownDateButton.style.display = 'none';
+      dropdownPopulaireButton.style.display = 'block';
+      dropdownTitleButton.style.display = 'block';
     });
     dropdownTitleButton.addEventListener('click', (e) => {
       filterContent.textContent = 'Titre';
       tablePhoto.sort((a, b) => a.title.localeCompare(b.title));
       displayMedia();
       closeDropdown();
+      dropdownTitleButton.style.display = 'none';
+      dropdownPopulaireButton.style.display = 'block';
+      dropdownDateButton.style.display = 'block';
     });
 
     filterMedia.appendChild(filterText);
@@ -103,9 +112,30 @@ function mediaTemplate(data) {
       displayLightbox(tableMedia, index, photographerId);
     });
     imageCard.setAttribute('src', photographerPicture);
-    photographerMediaTitle.textContent = title;
-    photographerNomberLikes.textContent = likes;
+    photographerMediaTitle.innerHTML = title;
+    photographerNomberLikes.innerHTML = likes;
+
+    let like = 0;
+    let liked = false;
+
     photographerImageLike.setAttribute('src', 'assets/images/like.svg');
+    photographerImageLike.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (!liked) {
+        tableMedia[tableMedia.findIndex((media) => media.id === id)].likes++;
+        like++;
+        liked = true;
+      } else {
+        tableMedia[tableMedia.findIndex((media) => media.id === id)].likes--;
+        like--;
+        liked = false;
+      }
+      const likesTotal = document.getElementById('likesTotal');
+      likesTotal.innerHTML = '';
+      const likesElem = getLikesPriceCardDOM(tableMedia, photographerPrice);
+      likesTotal.appendChild(likesElem);
+      photographerNomberLikes.innerHTML = likes + like;
+    });
 
     article.appendChild(lightboxMedia);
     lightboxMedia.appendChild(imageCard);
@@ -129,6 +159,7 @@ function mediaTemplate(data) {
     const photographerMediaLikes = document.createElement('div');
     photographerMediaLikes.className = 'photographer_likes';
     const photographerNomberLikes = document.createElement('p');
+    photographerNomberLikes.className = 'photographer_nomber_likes';
     const photographerImageLike = document.createElement('img');
 
     lightboxMedia.setAttribute('href', '#');
@@ -140,7 +171,29 @@ function mediaTemplate(data) {
     videoCard.setAttribute('src', photographerVideo);
     photographerMediaTitle.textContent = title;
     photographerNomberLikes.textContent = likes;
+
+    let like = 0;
+    let liked = false;
+
     photographerImageLike.setAttribute('src', 'assets/images/like.svg');
+    photographerImageLike.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (!liked) {
+        tableMedia[tableMedia.findIndex((media) => media.id === id)].likes++;
+        like++;
+        liked = true;
+      } else {
+        tableMedia[tableMedia.findIndex((media) => media.id === id)].likes--;
+        like--;
+        liked = false;
+      }
+      const likesTotal = document.getElementById('likesTotal');
+      likesTotal.innerHTML = '';
+      const likesElem = getLikesPriceCardDOM(tableMedia, photographerPrice);
+      likesTotal.appendChild(likesElem);
+
+      photographerNomberLikes.innerHTML = likes + like;
+    });
 
     article.appendChild(lightboxMedia);
     lightboxMedia.appendChild(videoCard);
@@ -153,27 +206,40 @@ function mediaTemplate(data) {
     return article;
   }
 
-  function getLikesPriceCardDOM() {
+  function totalLikesPage(tablePhoto) {
+    return tablePhoto.reduce(
+      (totalLikes, photo) => totalLikes + photo.likes,
+      0
+    );
+  }
+
+  function getLikesPriceCardDOM(tablePhoto, photographerPrice) {
     const likesPriceCard = document.createElement('div');
     likesPriceCard.className = 'likes_price_card';
     const likesContent = document.createElement('div');
     likesContent.className = 'likes_content';
-    const photographerLikes = document.createElement('p');
-    photographerLikes.className = 'photogrpher_likes';
+    const photographerTotalLikes = document.createElement('p');
+    photographerTotalLikes.className = 'photographer_total_likes';
     const photographerImageLike = document.createElement('img');
-    const photographerPrice = document.createElement('p');
-    photographerPrice.className = 'photographer_price';
+    const photographerPriceElem = document.createElement('p');
+    photographerPriceElem.className = 'photographer_price';
+
     photographerImageLike.setAttribute('src', 'assets/images/like.svg');
 
-    likesContent.textContent = `${likes} `;
-    photographerPrice.textContent = `${price} € / jour`;
+    const totalLikes = totalLikesPage(tablePhoto);
+    likesContent.textContent = `${totalLikes}`;
+    photographerPriceElem.textContent = `${photographerPrice} € / jour`;
 
     likesPriceCard.appendChild(likesContent);
     likesContent.appendChild(photographerImageLike);
-    likesPriceCard.appendChild(photographerPrice);
+    likesPriceCard.appendChild(photographerPriceElem);
 
     return likesPriceCard;
   }
 
-  return { getFilterMediaCardDOM, getMediaCardDOM, getLikesPriceCardDOM };
+  return {
+    getFilterMediaCardDOM,
+    getMediaCardDOM,
+    getLikesPriceCardDOM,
+  };
 }
