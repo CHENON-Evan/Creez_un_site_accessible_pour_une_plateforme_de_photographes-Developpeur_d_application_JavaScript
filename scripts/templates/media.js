@@ -19,10 +19,13 @@ function mediaTemplate(data, photographerPrice) {
     dropdownContent.id = 'dropdown_content';
     const dropdownPopulaire = document.createElement('li');
     const dropdownPopulaireButton = document.createElement('button');
+    dropdownPopulaireButton.className = 'dropdown_populaire_button';
     const dropdownDate = document.createElement('li');
     const dropdownDateButton = document.createElement('button');
+    dropdownDateButton.className = 'dropdown_date_button';
     const dropdownTitle = document.createElement('li');
     const dropdownTitleButton = document.createElement('button');
+    dropdownTitleButton.className = 'dropdown_title_button';
 
     filterText.textContent = 'Trier par';
     dropdownButton.addEventListener('click', (e) => {
@@ -33,8 +36,11 @@ function mediaTemplate(data, photographerPrice) {
         displayDropdown();
       }
     });
+    dropdownButton.setAttribute('aria-label', 'Ouvrir le menu de tri');
     filterContent.textContent = 'Popularité';
+    filterContent.setAttribute('aria-label', 'Sélection actuelle:');
     filterImage.setAttribute('src', 'assets/icons/expand_more.svg');
+    filterImage.setAttribute('alt', 'ouverture du filtre');
     dropdownPopulaireButton.textContent = 'Popularité';
     dropdownDateButton.textContent = 'Date';
     dropdownTitleButton.textContent = 'Titre';
@@ -103,22 +109,30 @@ function mediaTemplate(data, photographerPrice) {
     const photographerMediaLikes = document.createElement('div');
     photographerMediaLikes.className = 'photographer_likes';
     const photographerNomberLikes = document.createElement('p');
-    const photographerImageLike = document.createElement('img');
+    const photographerImageLike = document.createElement('button');
+    photographerImageLike.className = 'photographer_image_like';
+    const photographerImageLikes = document.createElement('img');
 
     lightboxMedia.setAttribute('href', '#');
+    lightboxMedia.setAttribute('role', 'link');
     lightboxMedia.addEventListener('click', (e) => {
       e.preventDefault();
       const index = tableMedia.findIndex((img) => img.id === id);
       displayLightbox(tableMedia, index, photographerId);
     });
     imageCard.setAttribute('src', photographerPicture);
+    imageCard.setAttribute('aria-label', 'media du photographe');
+    imageCard.setAttribute('alt', `${title}`);
     photographerMediaTitle.innerHTML = title;
     photographerNomberLikes.innerHTML = likes;
 
     let like = 0;
     let liked = false;
 
-    photographerImageLike.setAttribute('src', 'assets/images/like.svg');
+    photographerImageLikes.setAttribute('src', 'assets/images/like.svg');
+    photographerImageLike.setAttribute('alt', 'Like du media');
+    photographerImageLike.setAttribute('role', 'button');
+    photographerImageLike.setAttribute('tabindex', '0');
     photographerImageLike.addEventListener('click', (e) => {
       e.preventDefault();
       if (!liked) {
@@ -144,6 +158,7 @@ function mediaTemplate(data, photographerPrice) {
     photographerMediaTitleLikes.appendChild(photographerMediaLikes);
     photographerMediaLikes.appendChild(photographerNomberLikes);
     photographerMediaLikes.appendChild(photographerImageLike);
+    photographerImageLike.appendChild(photographerImageLikes);
 
     return article;
   }
@@ -163,19 +178,25 @@ function mediaTemplate(data, photographerPrice) {
     const photographerImageLike = document.createElement('img');
 
     lightboxMedia.setAttribute('href', '#');
+    lightboxMedia.setAttribute('role', 'link');
     lightboxMedia.addEventListener('click', (e) => {
       e.preventDefault();
       const index = tableMedia.findIndex((img) => img.id === id);
       displayLightbox(tableMedia, index, photographerId);
     });
     videoCard.setAttribute('src', photographerVideo);
-    photographerMediaTitle.textContent = title;
-    photographerNomberLikes.textContent = likes;
+    videoCard.setAttribute('aria-label', 'media du photographe');
+    videoCard.setAttribute('alt', `${title}`);
+    photographerMediaTitle.innerHTML = title;
+    photographerNomberLikes.innerHTML = likes;
 
     let like = 0;
     let liked = false;
 
     photographerImageLike.setAttribute('src', 'assets/images/like.svg');
+    photographerImageLike.setAttribute('alt', 'Like du media');
+    photographerImageLike.setAttribute('role', 'button');
+    photographerImageLike.setAttribute('tabindex', '0');
     photographerImageLike.addEventListener('click', (e) => {
       e.preventDefault();
       if (!liked) {
@@ -191,7 +212,6 @@ function mediaTemplate(data, photographerPrice) {
       likesTotal.innerHTML = '';
       const likesElem = getLikesPriceCardDOM(tableMedia, photographerPrice);
       likesTotal.appendChild(likesElem);
-
       photographerNomberLikes.innerHTML = likes + like;
     });
 
@@ -225,6 +245,8 @@ function mediaTemplate(data, photographerPrice) {
     photographerPriceElem.className = 'photographer_price';
 
     photographerImageLike.setAttribute('src', 'assets/images/like.svg');
+    photographerImageLike.setAttribute('aria-label', 'Like du media');
+    photographerImageLike.setAttribute('role', 'button');
 
     const totalLikes = totalLikesPage(tablePhoto);
     likesContent.textContent = `${totalLikes}`;

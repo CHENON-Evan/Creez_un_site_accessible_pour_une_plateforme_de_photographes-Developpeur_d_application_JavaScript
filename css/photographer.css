@@ -6,6 +6,12 @@
   display: none;
 }
 
+.logo_photographe {
+  cursor: pointer;
+  margin-left: 0;
+  height: 50px;
+}
+
 .photographer_header {
   background-color: #f2f2f2;
   height: 300px;
@@ -21,7 +27,7 @@
 }
 
 .photographer_header article img {
-  overflow: unset;
+  /*overflow: unset;*/
   height: 200px;
   width: 200px;
   clip-path: ellipse(50% 50%);
@@ -157,7 +163,9 @@
 .contact_button,
 .button_submit,
 .dropdown_button,
-button {
+.dropdown_populaire_button,
+.dropdown_date_button,
+.dropdown_title_button {
   font-size: 20px;
   color: white;
   padding: 11px;
@@ -167,6 +175,18 @@ button {
   background-color: #901c1c;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.close_modal_button {
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  right: 30px;
+  top: 55px;
+}
+
+.button_submit {
+  margin-top: 10px;
 }
 
 #contact_modal {
@@ -214,10 +234,8 @@ button {
 
 .modal header .photographer_name {
   margin: 0px;
-  width: 100%;
   color: black;
   font-size: 64px;
-  padding-bottom: 19px;
 }
 
 form {
@@ -247,11 +265,10 @@ form .form_data input {
 
 form .form_data textarea {
   width: 100%;
-  height: 166px;
+  height: 156px;
   border: none;
   border-radius: 5px;
   resize: inherit;
-  margin-bottom: 26px;
 }
 
 .form_data[data-error]::after {
@@ -259,7 +276,7 @@ form .form_data textarea {
   font-size: 22px;
   color: #901c1c;
   display: block;
-  margin-top: 15px;
+  margin-block: 15px;
   line-height: 0.3;
   opacity: 0;
   transition: 0.3s;
@@ -288,6 +305,14 @@ form .form_data textarea {
 .likes_content {
   display: flex;
   margin-left: 30px;
+}
+
+.photographer_image_like {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  width: 30px;
+  height: 20px;
 }
 
 .photographer_price {
@@ -340,25 +365,34 @@ form .form_data textarea {
   border-radius: 5px;
 }
 
-.lightbox .close_lightbox,
-.lightbox .previous_lightbox,
-.lightbox .next_lightbox {
+.lightbox .close_lightbox_button,
+.lightbox .previous_lightbox_button,
+.lightbox .next_lightbox_button {
+  background-color: transparent;
+  border: none;
   position: absolute;
   cursor: pointer;
   width: 72px;
 }
 
-.lightbox .close_lightbox {
+.lightbox .previous_lightbox,
+.lightbox .next_lightbox {
+  width: 100%;
+}
+
+.lightbox .close_lightbox_button {
+  background-color: transparent;
+  border: none;
   top: 0;
   right: 0;
 }
 
-.lightbox .previous_lightbox {
+.lightbox .previous_lightbox_button {
   top: 50%;
   left: 0;
 }
 
-.lightbox .next_lightbox {
+.lightbox .next_lightbox_button {
   top: 50%;
   right: 0;
 }

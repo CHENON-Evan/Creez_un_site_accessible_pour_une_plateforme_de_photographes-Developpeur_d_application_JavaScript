@@ -1,6 +1,9 @@
 function displayModal() {
   const modal = document.getElementById('contact_modal');
   modal.style.display = 'block';
+
+  const close = document.getElementById('close_modal');
+  close.focus();
 }
 
 function closeModal() {

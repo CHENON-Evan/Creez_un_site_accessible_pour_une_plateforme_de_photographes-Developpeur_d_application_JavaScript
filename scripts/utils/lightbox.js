@@ -1,17 +1,14 @@
 let currentPhotographerId = 0;
 
 function displayLightbox(tableMedia, index, photographerId) {
-  console.log(tableMedia);
   const lightbox = document.getElementById('contact_lightbox');
   const mediaContainer = document.querySelector('#media_container');
   const title = document.querySelector('.lightbox_title');
   const image = tableMedia[index];
   mediaContainer.innerHTML = '';
   title.innerHTML = image.title;
-  console.log(index);
   if (image.image) {
     const photographerPicture = `assets/images/${photographerId}/${image.image}`;
-    console.log(photographerId);
     const img = document.createElement('img');
     img.src = photographerPicture;
     mediaContainer.appendChild(img);
@@ -25,6 +22,9 @@ function displayLightbox(tableMedia, index, photographerId) {
   lightbox.style.display = 'block';
   lightbox.setAttribute('data-current-index', index);
   currentPhotographerId = photographerId;
+
+  const close = document.getElementById('close_button_lightbox');
+  close.focus();
 }
 
 function closeLightbox() {

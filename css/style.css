@@ -19,7 +19,13 @@ h1 {
   margin-right: 100px;
 }
 
+header a {
+  cursor: default;
+  margin-left: 100px;
+}
+
 .logo {
+  cursor: pointer;
   height: 50px;
   margin-left: 100px;
 }
@@ -45,7 +51,7 @@ h1 {
 }
 
 .photographer_section article a img {
-  overflow: unset;
+  /*overflow: unset;*/
   height: 200px;
   width: 200px;
   clip-path: ellipse(50% 50%);

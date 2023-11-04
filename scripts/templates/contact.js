@@ -28,6 +28,9 @@ function contactTemplate(data) {
     titleCloseModal.className = 'modal_title_close';
     const modalTitle = document.createElement('h2');
     modalTitle.className = 'modal_title';
+    const closeModalButton = document.createElement('button');
+    closeModalButton.className = 'close_modal_button';
+    closeModalButton.id = 'close_modal';
     const closeModalImage = document.createElement('img');
     const photographerName = document.createElement('p');
     photographerName.className = 'photographer_name';
@@ -45,9 +48,15 @@ function contactTemplate(data) {
         closeModal();
       }
     });
+    closeModalButton.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        closeModal();
+      }
+    });
 
     modalTitle.textContent = 'Contactez-moi';
     closeModalImage.setAttribute('src', 'assets/icons/close.svg');
+    closeModalImage.setAttribute('alt', 'Fermer la fenêtre de la modale');
     closeModalImage.addEventListener('click', () => {
       closeModal();
     });
@@ -64,14 +73,17 @@ function contactTemplate(data) {
     const emailDiv = createInputDiv('Email', 'email', 'email', 'email');
 
     sendButtonForm.setAttribute('type', 'submit');
-    sendButtonForm.setAttribute('onclick', `submitFormData()`);
+    sendButtonForm.addEventListener('click', () => {
+      submitFormData();
+    });
     sendButtonForm.textContent = 'Envoyer';
 
     photographerContact.appendChild(photographerModal);
     photographerModal.appendChild(modalHeader);
     modalHeader.appendChild(modalTitle);
-    modalHeader.appendChild(closeModalImage);
     modalHeader.appendChild(photographerName);
+    modalHeader.appendChild(closeModalButton);
+    closeModalButton.appendChild(closeModalImage);
     photographerModal.appendChild(photographerForm);
     photographerForm.appendChild(firstNameDiv);
     photographerForm.appendChild(lastNameDiv);

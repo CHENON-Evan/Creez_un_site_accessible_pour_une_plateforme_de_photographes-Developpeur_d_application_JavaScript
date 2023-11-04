@@ -23,10 +23,7 @@ function photographerTemplate(data) {
       `Carte de présentation du photographe ${name}`
     );
     photographerLink.setAttribute('href', `photographer.html?id=${id}`);
-    photographerLink.setAttribute(
-      'aria-label',
-      `Voir le profil du photographe ${name}`
-    );
+    photographerLink.setAttribute('role', 'link');
     img.setAttribute('src', picture);
     img.setAttribute('alt', `Photo de profile de ${name}`);
     photographer.setAttribute(
@@ -75,7 +72,10 @@ function photographerTemplate(data) {
     photographerCity.textContent = `${city}, ${country}`;
     photographerDescription.textContent = tagline;
     contact.textContent = 'Contactez-moi';
-    contact.setAttribute('onclick', `displayModal()`);
+    contact.addEventListener('click', (e) => {
+      displayModal();
+    });
+    contact.setAttribute('aria-label', 'Open contact form');
     img.setAttribute('src', picture);
     img.setAttribute('alt', `Photo de profile de ${name}`);
 
