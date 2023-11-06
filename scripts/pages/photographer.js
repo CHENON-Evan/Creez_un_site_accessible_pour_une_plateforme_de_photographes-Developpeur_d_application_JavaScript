@@ -1,7 +1,6 @@
-let params = new URL(document.location).searchParams;
-let id = parseInt(params.get('id'));
+const params = new URL(document.location).searchParams;
+const id = parseInt(params.get('id'), 10);
 let tablePhoto = [];
-let idPhotographe = 0;
 
 async function getPhotographers() {
   const reponse = await fetch('./data/photographers.json');
@@ -12,7 +11,7 @@ async function getPhotographers() {
 
 async function displayData(photographers, media) {
   const photographerHeader = document.querySelector('.photographer_header');
-  const photographer = photographers.find((data) => data.id == id);
+  const photographer = photographers.find((data) => data.id === id);
 
   const photographerModel = photographerTemplate(photographer);
   const userBendeauDOM = photographerModel.getUserBendeauDOM();
@@ -29,7 +28,7 @@ async function displayData(photographers, media) {
   const userContactDOM = photographerModal.getContactCardDOM();
   photographerMain.appendChild(userContactDOM);
 
-  const photographerMedia = media.filter((data) => data.photographerId == id);
+  const photographerMedia = media.filter((data) => data.photographerId === id);
 
   tablePhoto = photographerMedia;
   idPhotographe = id;
@@ -38,7 +37,7 @@ async function displayData(photographers, media) {
   const photographerLikesPrice = mediaTemplate(photographer);
   const likesPriceCardDOM = photographerLikesPrice.getLikesPriceCardDOM(
     tablePhoto,
-    photographerPrice
+    photographerPrice,
   );
   const likesTotal = document.getElementById('likesTotal');
   likesTotal.appendChild(likesPriceCardDOM);

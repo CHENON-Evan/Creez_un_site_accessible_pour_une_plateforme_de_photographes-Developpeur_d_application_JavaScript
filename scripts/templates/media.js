@@ -1,5 +1,7 @@
 function mediaTemplate(data, photographerPrice) {
-  const { id, photographerId, title, image, video, likes, price } = data;
+  const {
+    id, photographerId, title, image, video, likes,
+  } = data;
 
   const photographerPicture = `assets/images/${photographerId}/${image}`;
   const photographerVideo = `assets/images/${photographerId}/${video}`;
@@ -28,9 +30,9 @@ function mediaTemplate(data, photographerPrice) {
     dropdownTitleButton.className = 'dropdown_title_button';
 
     filterText.textContent = 'Trier par';
-    dropdownButton.addEventListener('click', (e) => {
+    dropdownButton.addEventListener('click', () => {
       const dropdownContent = document.getElementById('dropdown_content');
-      if (dropdownContent.style.display == 'block') {
+      if (dropdownContent.style.display === 'block') {
         closeDropdown();
       } else {
         displayDropdown();
@@ -45,7 +47,7 @@ function mediaTemplate(data, photographerPrice) {
     dropdownDateButton.textContent = 'Date';
     dropdownTitleButton.textContent = 'Titre';
     dropdownPopulaireButton.style.display = 'none';
-    dropdownPopulaireButton.addEventListener('click', (e) => {
+    dropdownPopulaireButton.addEventListener('click', () => {
       filterContent.textContent = 'Popularité';
       tablePhoto.sort((a, b) => b.likes - a.likes);
       displayMedia();
@@ -54,7 +56,7 @@ function mediaTemplate(data, photographerPrice) {
       dropdownDateButton.style.display = 'block';
       dropdownTitleButton.style.display = 'block';
     });
-    dropdownDateButton.addEventListener('click', (e) => {
+    dropdownDateButton.addEventListener('click', () => {
       filterContent.textContent = 'Date';
       tablePhoto.sort((a, b) => new Date(b.date) - new Date(a.date));
       displayMedia();
@@ -63,7 +65,7 @@ function mediaTemplate(data, photographerPrice) {
       dropdownPopulaireButton.style.display = 'block';
       dropdownTitleButton.style.display = 'block';
     });
-    dropdownTitleButton.addEventListener('click', (e) => {
+    dropdownTitleButton.addEventListener('click', () => {
       filterContent.textContent = 'Titre';
       tablePhoto.sort((a, b) => a.title.localeCompare(b.title));
       displayMedia();
@@ -93,9 +95,8 @@ function mediaTemplate(data, photographerPrice) {
   function getMediaCardDOM(tableMedia) {
     if (image) {
       return getImagesCardDOM(tableMedia);
-    } else {
-      return getVideosCardDOM(tableMedia);
     }
+    return getVideosCardDOM(tableMedia);
   }
 
   function getImagesCardDOM(tableMedia) {
@@ -229,7 +230,7 @@ function mediaTemplate(data, photographerPrice) {
   function totalLikesPage(tablePhoto) {
     return tablePhoto.reduce(
       (totalLikes, photo) => totalLikes + photo.likes,
-      0
+      0,
     );
   }
 

@@ -34,7 +34,7 @@ function closeLightbox() {
 
 function previousLightbox(tablePhoto) {
   const lightbox = document.getElementById('contact_lightbox');
-  let index = parseInt(lightbox.getAttribute('data-current-index'));
+  let index = parseInt(lightbox.getAttribute('data-current-index'), 10);
   index--;
 
   if (index < 0) {
@@ -46,7 +46,7 @@ function previousLightbox(tablePhoto) {
 
 function nextLightbox(tablePhoto) {
   const lightbox = document.getElementById('contact_lightbox');
-  let index = parseInt(lightbox.getAttribute('data-current-index'));
+  let index = parseInt(lightbox.getAttribute('data-current-index'), 10);
   index++;
 
   if (index >= tablePhoto.length) {

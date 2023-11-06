@@ -40,11 +40,11 @@ function lightboxTemplate(tablePhoto) {
       }
     });
     previousImageLightbox.setAttribute('src', 'assets/icons/previous.svg');
-    previousImageLightbox.setAttribute('alt', `aller a l'image précédente`);
+    previousImageLightbox.setAttribute('alt', "aller a l'image précédente");
     previousImageLightbox.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') {
         const lightbox = document.getElementById('contact_lightbox');
-        if (lightbox.style.display == 'block') {
+        if (lightbox.style.display === 'block') {
           const index = tablePhoto.findIndex((img) => img.id === id);
           previousLightbox(tablePhoto, index);
         }
@@ -59,18 +59,18 @@ function lightboxTemplate(tablePhoto) {
     document.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowLeft') {
         const lightbox = document.getElementById('contact_lightbox');
-        if (lightbox.style.display == 'block') {
+        if (lightbox.style.display === 'block') {
           const index = tablePhoto.findIndex((img) => img.id === id);
           previousLightbox(tablePhoto, index);
         }
       }
     });
     nextImageLightbox.setAttribute('src', 'assets/icons/next.svg');
-    nextImageLightbox.setAttribute('alt', `aller a l'image suivante`);
+    nextImageLightbox.setAttribute('alt', "aller a l'image suivante");
     nextImageLightbox.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') {
         const lightbox = document.getElementById('contact_lightbox');
-        if (lightbox.style.display == 'block') {
+        if (lightbox.style.display === 'block') {
           const index = tablePhoto.findIndex((img) => img.id === id);
           nextLightbox(tablePhoto, index);
         }
@@ -84,7 +84,7 @@ function lightboxTemplate(tablePhoto) {
     document.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowRight') {
         const lightbox = document.getElementById('contact_lightbox');
-        if (lightbox.style.display == 'block') {
+        if (lightbox.style.display === 'block') {
           const index = tablePhoto.findIndex((img) => img.id === id);
           nextLightbox(tablePhoto, index);
         }

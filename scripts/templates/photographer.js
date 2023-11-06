@@ -1,5 +1,7 @@
 function photographerTemplate(data) {
-  const { name, id, city, country, tagline, price, portrait } = data;
+  const {
+    name, id, city, country, tagline, price, portrait,
+  } = data;
 
   const picture = `assets/images/Photographers ID/${portrait}`;
 
@@ -20,7 +22,7 @@ function photographerTemplate(data) {
 
     article.setAttribute(
       'aria-label',
-      `Carte de présentation du photographe ${name}`
+      `Carte de présentation du photographe ${name}`,
     );
     photographerLink.setAttribute('href', `photographer.html?id=${id}`);
     photographerLink.setAttribute('role', 'link');
@@ -28,7 +30,7 @@ function photographerTemplate(data) {
     img.setAttribute('alt', `Photo de profile de ${name}`);
     photographer.setAttribute(
       'aria-label',
-      `Déscription du photographe ${name}`
+      `Déscription du photographe ${name}`,
     );
     photographerName.textContent = name;
     photographerCity.textContent = `${city}, ${country}`;
@@ -66,13 +68,13 @@ function photographerTemplate(data) {
 
     article.setAttribute(
       'aria-label',
-      `Carte de présentation du photographe ${name}`
+      `Carte de présentation du photographe ${name}`,
     );
     photographerName.textContent = name;
     photographerCity.textContent = `${city}, ${country}`;
     photographerDescription.textContent = tagline;
     contact.textContent = 'Contactez-moi';
-    contact.addEventListener('click', (e) => {
+    contact.addEventListener('click', () => {
       displayModal();
     });
     contact.setAttribute('aria-label', 'Open contact form');
