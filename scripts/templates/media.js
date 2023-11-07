@@ -175,8 +175,9 @@ function mediaTemplate(data, photographerPrice) {
     const photographerMediaLikes = document.createElement('div');
     photographerMediaLikes.className = 'photographer_likes';
     const photographerNomberLikes = document.createElement('p');
-    photographerNomberLikes.className = 'photographer_nomber_likes';
-    const photographerImageLike = document.createElement('img');
+    const photographerImageLike = document.createElement('button');
+    photographerImageLike.className = 'photographer_image_like';
+    const photographerImageLikes = document.createElement('img');
 
     lightboxMedia.setAttribute('href', '#');
     lightboxMedia.setAttribute('role', 'link');
@@ -194,7 +195,7 @@ function mediaTemplate(data, photographerPrice) {
     let like = 0;
     let liked = false;
 
-    photographerImageLike.setAttribute('src', 'assets/images/like.svg');
+    photographerImageLikes.setAttribute('src', 'assets/images/like.svg');
     photographerImageLike.setAttribute('alt', 'Like du media');
     photographerImageLike.setAttribute('role', 'button');
     photographerImageLike.setAttribute('tabindex', '0');
@@ -223,6 +224,7 @@ function mediaTemplate(data, photographerPrice) {
     photographerMediaTitleLikes.appendChild(photographerMediaLikes);
     photographerMediaLikes.appendChild(photographerNomberLikes);
     photographerMediaLikes.appendChild(photographerImageLike);
+    photographerImageLike.appendChild(photographerImageLikes);
 
     return article;
   }
